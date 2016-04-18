@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "base.html" %}
+{% block content %}
+
+{% if post_list %}
+    {% for post in post_list %}
+        <div class="post">
+            <h1><a href="{% url 'blogtopic:detail' post.slug %}">{{ post.title }}</a></h1>
+            <p>{{ post.text_for_main_page|safe }}</p>
+        </div>
+    {% endfor %}
+
+    {% if is_paginated %}
+        <ul class="pagination pagination-centered">
+            {% if page_obj.has_previous %}
+                <li><a href="?page=1"><<</a></li>
+                <li><a href="?page={{ page_obj.previous_page_number }}"><</a></li>
+            {% endif %}
+
+            {% for i in paginator.page_range %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}><a href="?page={{i}}">{{i}}</a></li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">></a></li>
+                <li><a href="?page={{ page_obj.paginator.num_pages }}">>></a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+{% else %}
+    <p>No posts have been published yet.</p>
+{% endif %}
+{% endblock %}
+    </body>
+</html>
