@@ -1,2 +1,8 @@
 # network_blog
-base Django-based networking blog with humble comment functionality
+
+This project only for testing and evaluating Django framework!
+
+Based on Django v1.9
+
+Functionality: Creating, editing posts, Posting comments
+
